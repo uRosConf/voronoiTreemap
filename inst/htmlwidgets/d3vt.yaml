@@ -1,6 +1,6 @@
 dependencies:
   - name: d3vt
-    version: 1.0.3
+    version: 0.0.1
     src: htmlwidgets/lib/d3
     script: 
       - d3.v4.min.js

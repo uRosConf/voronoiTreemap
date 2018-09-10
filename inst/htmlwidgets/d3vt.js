@@ -1,13 +1,19 @@
 HTMLWidgets.widget({
 
-  name: "d3vt",
-  
-  type: "output",
-  
+  name: 'd3vt',
+
+  type: 'output',
+
   factory: function(el, width, height) {
-    alert("XXX");
-    //begin: constants
-      var _2PI = 2*Math.PI;
+
+    // TODO: define shared variables for this instance
+
+    return {
+
+      renderValue: function(x) {
+window.alert("xxxx")
+        // TODO: code to render the widget, e.g.
+        var _2PI = 2*Math.PI;
       //end: constants
       
       //begin: layout conf.
@@ -208,7 +214,15 @@ HTMLWidgets.widget({
         hoverers.append("title")
           .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };
+
+      },
+
+      resize: function(width, height) {
+
+        // TODO: code to re-render the widget with a new size
+
+      }
+
+    };
   }
 });
-
-

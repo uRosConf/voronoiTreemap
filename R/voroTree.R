@@ -16,5 +16,5 @@ voroTree <- function(
   )
   
   # create the widget
-  htmlwidgets::createWidget("d3vt", x, width = width, height = height,package="voronoiTreemap")
+  htmlwidgets::createWidget("d3vt", x, package="voronoiTreemap")
 }
