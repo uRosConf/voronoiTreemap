@@ -7,3 +7,6 @@ create a widget: https://www.htmlwidgets.org/develop_intro.html
 ## js-library
 https://github.com/Kcnarf/d3-voronoi-treemap
 https://bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
+
+## read testdata
+df <- readRDS("documentation/testdatadf.rds")
