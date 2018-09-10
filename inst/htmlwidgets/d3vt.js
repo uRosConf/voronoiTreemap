@@ -15,23 +15,29 @@ HTMLWidgets.widget({
           Math.seedrandom(x.options.seed);
         }
         
-        // TODO: code to render the widget, e.g.
         var _2PI = 2*Math.PI;
       //end: constants
       //begin: layout conf.
-      
-      var svgWidth = 960,
-          svgHeight = 500,
-          margin = {top: 10, right: 10, bottom: 10, left: 10},
-          height = svgHeight - margin.top - margin.bottom,
-          width = svgWidth - margin.left - margin.right,
-          halfWidth = width/2,
-          halfHeight = height/2,
-          quarterWidth = width/4,
-          quarterHeight = height/4,
+      if(width==null){
+        var svgWidth = 960;
+      }else{
+        svgWidth = width;
+      }
+      if(height==null){
+        svgHeight = 500;
+      }else{
+        svgHeight = height;
+      }
+      var    margin = {top: 10, right: 10, bottom: 10, left: 10},
+          heightT = svgHeight - margin.top - margin.bottom,
+          widthT = svgWidth - margin.left - margin.right,
+          halfWidth = widthT/2,
+          halfHeight = heightT/2,
+          quarterWidth = widthT/4,
+          quarterHeight = heightT/4,
           titleY = 20,
-          legendsMinY = height - 20,
-          treemapRadius = 205,
+          legendsMinY = heightT - 20,
+          treemapRadius = width*205/960,
           treemapCenter = [halfWidth, halfHeight+5];
       //end: layout conf.
       var svg = d3.select(el)
@@ -105,17 +111,17 @@ HTMLWidgets.widget({
       function drawFooter() {
         drawingArea.append("text")
         	.classed("tiny light", true)
-        	.attr("transform", "translate("+[0, height]+")")
+        	.attr("transform", "translate("+[0, heightT]+")")
         	.attr("text-anchor", "start")
         	.text("Remake of HowMuch.net's article 'The Global Economy by GDP'")
         drawingArea.append("text")
         	.classed("tiny light", true)
-        	.attr("transform", "translate("+[halfWidth, height]+")")
+        	.attr("transform", "translate("+[halfWidth, heightT]+")")
         	.attr("text-anchor", "middle")
         	.text("by @_Kcnarf")
         drawingArea.append("text")
         	.classed("tiny light", true)
-        	.attr("transform", "translate("+[width, height]+")")
+        	.attr("transform", "translate("+[widthT, heightT]+")")
         	.attr("text-anchor", "end")
         	.text("bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568")
       }
