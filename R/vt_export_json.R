@@ -1,3 +1,40 @@
+#ll <- ToListExplicit(vt_testdata(), unname=FALSE, nameName = "name", childrenName = "children")
+vt_make_json <- function(node) {
+  ll <- ToListExplicit(node, unname=FALSE, nameName = "name", childrenName = "children")
+
+  json <- paste0("{",shQuote("name"),":",shQuote(ll$name))
+  childs <- ll$children
+  levs <- names(childs)
+  if (length(levs)==0) {
+    json <- paste0(json,"}")
+    return(json)
+  }
+  json <- paste0(json,",",shQuote("children"),":[{")
+  for (i in 1:length(levs)) {
+    lev <- levs[i]
+    if (i>1) {
+      json <- paste0(json,"{")
+    }
+    json <- paste0(json, shQuote("name"),":",shQuote(childs[[lev]]$name),",")
+    json <- paste0(json, shQuote("color"),":",shQuote(childs[[lev]]$color),",")
+    json <- paste0(json, shQuote("children"),":[{")
+    for (k in seq_along(childs[[lev]]$children)) {
+      tmp <- childs[[lev]]$children[[k]]
+      if (k!=1) {
+        json <- paste0(json,",{")
+      }
+      json <- paste0(json,shQuote("name"),":",shQuote(tmp$name),",")
+      json <- paste0(json,shQuote("weight"),":",tmp$weight,",")
+      json <- paste0(json,shQuote("code"),":",shQuote(tmp$code),"}")
+    }
+    json <- paste0(json,"]}")
+    if (i<length(levs)) {
+      json <- paste0(json,",")
+    }
+  }
+  json <- paste0(json,"]}")
+}
+
 #' vt_export_json
 #'
 #' exports a node to suitable json required by voronoi javascript function
@@ -17,10 +54,13 @@
 vt_export_json <- function(node, file=NULL) {
   stopifnot("Node" %in% class(node))
   stopifnot("R6" %in% class(node))
+
+  #json <- toJSON(ToListExplicit(node, unname=FALSE, nameName = "name", childrenName = "children"))
+  json <- vt_make_json(node)
   if (is.null(file)) {
-    return(toJSON(ToListExplicit(node)))
+    return(json)
   }
   cat("writing json to",shQuote(file),"\n")
-  cat(toJSON(ToListExplicit(node)), file=file)
+  cat(json, file=file)
   return(invisible(NULL))
 }

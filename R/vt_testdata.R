@@ -12,13 +12,12 @@ vt_testdata <- function() {
   # continents
   cont <- c("Asia","North America","Europe","South America","Australia","Africa","Rest of the World")
   cols <-  c("#f58321","#ef1621","#77bc45","#4aaaea","#00acad","#f575a3","#592c94")
-  cntrs <- c("Thailand","China","Vietnam","Malaysia")
   n <- vt_add_nodes(n, refnode="world",node_names=cont,colors=cols)
 
   # Asian countries
   cntr_asia <- c("China","Japan","India","South Korea","Russia", "Indonesia","Turkey",
-                 "Saudi Arabia","Iran","Thailand","United Arab Emirates","Hong Kong","Israel","Malaysia",
-                 "Singapore", "Philipines")
+                 "Saudi Arabia","Iran","Thailand","United Arab Emirates","Hong Kong","Israel","Malasya",
+                 "Singapore", "Philippines")
   vals <- c(14.84,5.91,2.83,1.86,1.8,1.16,0.97,0.87,0.57,0.53,0.5,0.42,0.4,0.4,0.39,0.39)
   codes <- c("CN","JP","IN","KR","RU","ID","TR","SA","IR","TH","AE","HK","IL","MY","SG","PH")
   n <- vt_add_nodes(n, refnode="Asia",node_names=cntr_asia, weights=vals,codes=codes)
@@ -37,7 +36,7 @@ vt_testdata <- function() {
   n <- vt_add_nodes(n, refnode="Europe",node_names=cntr_europe, weights=vals,codes=codes)
 
   # South America
-  cntr_sa <- c("Brazil","Argentinia","Venezuela","Colombia")
+  cntr_sa <- c("Brazil","Argentina","Venezuela","Colombia")
   vals <- c(2.39,0.79,0.5,0.39)
   codes <- c("BR","AR","VE","CO")
   n <- vt_add_nodes(n, refnode="South America",node_names=cntr_sa, weights=vals,codes=codes)

@@ -69,7 +69,7 @@ vt_add_nodes <- function(node, refnode, node_names, colors=NULL, weights=NULL, c
       if(!is.null(codes)) {
         cc <- codes[i]
       }
-      cur_node$AddChild(lab, leaf=lab, color=col, weight=ww, code=cc)
+      cur_node$AddChild(lab, color=col, weight=ww, code=cc)
     }
   }
   return(node)
