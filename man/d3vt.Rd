@@ -2,11 +2,16 @@
 % Please edit documentation in R/d3vt.R
 \name{d3vt}
 \alias{d3vt}
-\title{<Add Title>}
+\title{Voronoi Treemap in an htmlwidget}
 \usage{
 d3vt(data, title = NULL, legend = FALSE, width = NULL, height = NULL,
   elementId = NULL)
 }
 \description{
-<Add Description>
+Function to generate an htmlwidget with an htmlwidget
+}
+\examples{
+d3vt(vt_export_json(vt_testdata()))
+d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
+d3vt(d)
 }

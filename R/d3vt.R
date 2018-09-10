@@ -1,15 +1,16 @@
-#' <Add Title>
+#' Voronoi Treemap in an htmlwidget
 #'
-#' <Add Description>
+#' Function to generate an htmlwidget with an htmlwidget
 #'
 #' @import htmlwidgets
-#'
+#' @examples 
+#' d3vt(vt_export_json(vt_testdata()))
+#' d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
+#' d3vt(d)
 #' @export
 d3vt <- function(data,title=NULL,legend=FALSE,width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  #data <- paste(readLines("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json"),collapse="")
-  #data <- "https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json"
   x = list(
     data= data,
     options = list(legend=legend,title=title)

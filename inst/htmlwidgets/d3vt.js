@@ -181,7 +181,7 @@ HTMLWidgets.widget({
         labels.append("text")
         	.classed("name", true)
         	.html(function(d){
-          	return (d.data.weight<1)? d.data.code : d.data.name;
+          	return (d.data.weight<1)? d.data.code : d.data.leaf;
         	});
 //        labels.append("text")
 //        	.classed("value", true)
@@ -197,7 +197,7 @@ HTMLWidgets.widget({
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
         			.style("fill","transparent");
         hoverers.append("title")
-          .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
+          .text(function(d) { return d.data.leaf + "\n" + d.value+"%"; });
       };
  // Code Run     
       //d3.json("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json", function(error, rootData) {
