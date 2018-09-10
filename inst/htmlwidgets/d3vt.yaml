@@ -7,3 +7,4 @@ dependencies:
       - plugins/d3-voronoi-treemap.js
       - plugins/d3-voronoi-map.js
       - plugins/d3-weighted-voronoi.js
+      - plugins/seedrandom.min.js

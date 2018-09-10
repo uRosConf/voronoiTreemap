@@ -8,12 +8,12 @@
 #' d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
 #' d3vt(d)
 #' @export
-d3vt <- function(data,title=NULL,legend=FALSE,width = NULL, height = NULL, elementId = NULL) {
+d3vt <- function(data,title = NULL,legend = FALSE,legend_title = NULL,width = NULL, height = NULL, seed = NULL, elementId = NULL) {
 
   # forward options using x
   x = list(
     data= data,
-    options = list(legend=legend,title=title)
+    options = list(legend=legend,title=title,legend_title=legend_title,seed=seed)
   )
 
   # create widget

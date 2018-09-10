@@ -11,6 +11,10 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(x) {
+        if(x.options.seed!=null){
+          Math.seedrandom(x.options.seed);
+        }
+        
         // TODO: code to render the widget, e.g.
         var _2PI = 2*Math.PI;
       //end: constants
@@ -81,10 +85,13 @@ HTMLWidgets.widget({
         	.classed("world", true)
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
         	.attr("d", "M"+circlingPolygon.join(",")+"Z");
-        
-        //drawTitle();
+        if(x.options.title!=null){
+          drawTitle();
+        }
         //drawFooter();
-        drawLegends(rootData);
+        if(x.options.legend){
+          drawLegends(rootData);  
+        }
       }
       
       function drawTitle() {
@@ -92,7 +99,7 @@ HTMLWidgets.widget({
         	.attr("id", "title")
         	.attr("transform", "translate("+[halfWidth, titleY]+")")
         	.attr("text-anchor", "middle")
-          .text("The Global Economy by GDP (as of 01/2017)")
+          .text(x.options.title);
       }
       
       function drawFooter() {
@@ -118,7 +125,7 @@ HTMLWidgets.widget({
             interLegend = 4,
             colorWidth = legendHeight*6,
             continents = rootData.children.reverse();
-        
+            window.yourGlobalVariable = rootData;
         var legendContainer = drawingArea.append("g")
         	.classed("legend", true)
         	.attr("transform", "translate("+[0, legendsMinY]+")");
@@ -143,10 +150,11 @@ HTMLWidgets.widget({
         	.classed("tiny", true)
         	.attr("transform", "translate("+[colorWidth+5, -2]+")")
         	.text(function(d){ return d.name; });
-        
-        legendContainer.append("text")
-        	.attr("transform", "translate("+[0, -continents.length*(legendHeight+interLegend)-5]+")")
-          .text("Continents");
+        if(x.options.legend_title!=null){
+          legendContainer.append("text")
+        	  .attr("transform", "translate("+[0, -continents.length*(legendHeight+interLegend)-5]+")").text(x.options.legend_title);
+          
+        }
       }
       
       function drawTreemap(hierarchy) {
@@ -181,7 +189,8 @@ HTMLWidgets.widget({
         labels.append("text")
         	.classed("name", true)
         	.html(function(d){
-          	return (d.data.weight<1)? d.data.code : d.data.leaf;
+        	  return(d.data.code)
+          	//return (d.data.weight<1)? d.data.code : d.data.name;
         	});
 //        labels.append("text")
 //        	.classed("value", true)
@@ -197,7 +206,7 @@ HTMLWidgets.widget({
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
         			.style("fill","transparent");
         hoverers.append("title")
-          .text(function(d) { return d.data.leaf + "\n" + d.value+"%"; });
+          .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };
  // Code Run     
       //d3.json("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json", function(error, rootData) {
