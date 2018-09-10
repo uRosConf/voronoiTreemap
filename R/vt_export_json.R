@@ -11,6 +11,7 @@
 #' @export
 #' @seealso vt_create_node vt_add_nodes
 #' @examples
+#' n <- vt_testdata()
 #' vt_export_json(n)
 #' vt_export_json(n, file=tempfile())
 vt_export_json <- function(node, file=NULL) {

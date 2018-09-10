@@ -1,12 +1,12 @@
-#' voronoi_testdata_example
+#' vt_testdata
 #'
 #' @return returns a json-string as in the example
 #' from https://bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
 #'
 #' @examples
-#' voronoi_testdata_example()
-voronoi_testdata_example <- function() {
+#' vt_testdata()
+vt_testdata <- function() {
   n <- vt_create_node("Total")
 
   # continents
