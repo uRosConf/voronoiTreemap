@@ -2,30 +2,30 @@
 vt_make_json <- function(node) {
   ll <- ToListExplicit(node, unname=FALSE, nameName = "name", childrenName = "children")
 
-  json <- paste0("{",shQuote("name"),":",shQuote(ll$name))
+  json <- paste0("{",dQuote("name"),":",dQuote(ll$name))
   childs <- ll$children
   levs <- names(childs)
   if (length(levs)==0) {
     json <- paste0(json,"}")
     return(json)
   }
-  json <- paste0(json,",",shQuote("children"),":[{")
+  json <- paste0(json,",",dQuote("children"),":[{")
   for (i in 1:length(levs)) {
     lev <- levs[i]
     if (i>1) {
       json <- paste0(json,"{")
     }
-    json <- paste0(json, shQuote("name"),":",shQuote(childs[[lev]]$name),",")
-    json <- paste0(json, shQuote("color"),":",shQuote(childs[[lev]]$color),",")
-    json <- paste0(json, shQuote("children"),":[{")
+    json <- paste0(json, dQuote("name"),":",dQuote(childs[[lev]]$name),",")
+    json <- paste0(json, dQuote("color"),":",dQuote(childs[[lev]]$color),",")
+    json <- paste0(json, dQuote("children"),":[{")
     for (k in seq_along(childs[[lev]]$children)) {
       tmp <- childs[[lev]]$children[[k]]
       if (k!=1) {
         json <- paste0(json,",{")
       }
-      json <- paste0(json,shQuote("name"),":",shQuote(tmp$name),",")
-      json <- paste0(json,shQuote("weight"),":",tmp$weight,",")
-      json <- paste0(json,shQuote("code"),":",shQuote(tmp$code),"}")
+      json <- paste0(json,dQuote("name"),":",dQuote(tmp$name),",")
+      json <- paste0(json,dQuote("weight"),":",tmp$weight,",")
+      json <- paste0(json,dQuote("code"),":",dQuote(tmp$code),"}")
     }
     json <- paste0(json,"]}")
     if (i<length(levs)) {
@@ -55,12 +55,11 @@ vt_export_json <- function(node, file=NULL) {
   stopifnot("Node" %in% class(node))
   stopifnot("R6" %in% class(node))
 
-  #json <- toJSON(ToListExplicit(node, unname=FALSE, nameName = "name", childrenName = "children"))
-  json <- vt_make_json(node)
+  json <- encodeString(vt_make_json(node))
   if (is.null(file)) {
     return(json)
   }
-  cat("writing json to",shQuote(file),"\n")
+  cat("writing json to",dQuote(file),"\n")
   cat(json, file=file)
   return(invisible(NULL))
 }
