@@ -11,12 +11,11 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(x) {
-window.alert("xxxx")
         // TODO: code to render the widget, e.g.
         var _2PI = 2*Math.PI;
       //end: constants
-      
       //begin: layout conf.
+      
       var svgWidth = 960,
           svgHeight = 500,
           margin = {top: 10, right: 10, bottom: 10, left: 10},
@@ -31,7 +30,11 @@ window.alert("xxxx")
           treemapRadius = 205,
           treemapCenter = [halfWidth, halfHeight+5];
       //end: layout conf.
-      
+      var svg = d3.select(el)
+                    .append("svg")
+                    .style("width", svgWidth)
+                    .style("height", svgHeight);
+                    //.style("background-color","rgb(250,250,250)");
       //begin: treemap conf.
       var _voronoiTreemap = d3.voronoiTreemap();
       var hierarchy, circlingPolygon;
@@ -42,22 +45,9 @@ window.alert("xxxx")
       //end: drawing conf.
       
       //begin: reusable d3Selection
-      var svg, drawingArea, treemapContainer;
-      //end: reusable d3Selection
       
-      d3.json("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json", function(error, rootData) {
-        if (error) throw error;
-        
-        initData();
-        initLayout(rootData);
-        
-        hierarchy = d3.hierarchy(rootData).sum(function(d){ return d.weight; });
-        _voronoiTreemap
-          .clip(circlingPolygon)
-        	(hierarchy);
-        
-        drawTreemap(hierarchy);
-      });
+      var drawingArea, treemapContainer;
+      //end: reusable d3Selection
       
       function initData(rootData) {
         circlingPolygon = computeCirclingPolygon(treemapRadius);
@@ -79,10 +69,6 @@ window.alert("xxxx")
       };
       
       function initLayout(rootData) {
-        svg = d3.select("svg")
-          .attr("width", svgWidth)
-          .attr("height", svgHeight);
-        
         drawingArea = svg.append("g")
         	.classed("drawingArea", true)
         	.attr("transform", "translate("+[margin.left,margin.top]+")");
@@ -96,8 +82,8 @@ window.alert("xxxx")
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
         	.attr("d", "M"+circlingPolygon.join(",")+"Z");
         
-        drawTitle();
-        drawFooter();
+        //drawTitle();
+        //drawFooter();
         drawLegends(rootData);
       }
       
@@ -177,8 +163,9 @@ window.alert("xxxx")
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
         			.style("fill", function(d){
                 return d.parent.data.color;
-          		});
-        
+          		}
+          		)
+          		;
         var labels = treemapContainer.append("g")
         	.classed('labels', true)
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
@@ -191,16 +178,14 @@ window.alert("xxxx")
           			return "translate("+[d.polygon.site.x, d.polygon.site.y]+")";
               })
         			.style("font-size", function(d){ return fontScale(d.data.weight); });
-        
         labels.append("text")
         	.classed("name", true)
         	.html(function(d){
           	return (d.data.weight<1)? d.data.code : d.data.name;
         	});
-        labels.append("text")
-        	.classed("value", true)
-        	.text(function(d){ return d.data.weight+"%"; });
-        
+//        labels.append("text")
+//        	.classed("value", true)
+//        	.text(function(d){ return d.data.weight+"%"; });
         var hoverers = treemapContainer.append("g")
         	.classed('hoverers', true)
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
@@ -209,11 +194,27 @@ window.alert("xxxx")
         	.enter()
         		.append("path")
         			.classed("hoverer", true)
-        			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; });
-        
+        			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
+        			.style("fill","transparent");
         hoverers.append("title")
           .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };
+ // Code Run     
+      d3.json(x.data, function(error, rootData) {
+        if (error) throw error;
+        
+        initData();
+        initLayout(rootData);
+        
+        hierarchy = d3.hierarchy(rootData).sum(function(d){ return d.weight; });
+        _voronoiTreemap
+          .clip(circlingPolygon)
+        	(hierarchy);
+        
+        drawTreemap(hierarchy);
+      });
+      
+      
       },
 
       resize: function(width, height) {

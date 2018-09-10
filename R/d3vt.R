@@ -5,11 +5,14 @@
 #' @import htmlwidgets
 #'
 #' @export
-d3vt <- function(message, width = NULL, height = NULL, elementId = NULL) {
+d3vt <- function(title=NULL,legend=FALSE,width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
+  #data <- paste(readLines("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json"),collapse="")
+  data <- "https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json"
   x = list(
-    message = message
+    data= data,
+    options = list(legend=legend,title=title)
   )
 
   # create widget
