@@ -4,9 +4,8 @@
 \alias{vt_d3}
 \title{Voronoi Treemap in an htmlwidget}
 \usage{
-vt_d3(data, elementId = NULL, width = NULL, height = NULL,
-  seed = NULL, title = NULL, legend = FALSE, legend_title = NULL,
-  footer = NULL)
+vt_d3(data, elementId = NULL, width = NULL, height = NULL, seed = NULL,
+  title = NULL, legend = FALSE, legend_title = NULL, footer = NULL)
 }
 \arguments{
 \item{data}{a correct json data object}
@@ -35,6 +34,7 @@ Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.o
 }
 \examples{
 vt_d3(vt_export_json(vt_testdata()))
-d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
-vt_d3(d)
+data(ExampleGDP)
+gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP))
+vt_d3(gdp_json)
 }
