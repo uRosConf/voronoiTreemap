@@ -28,17 +28,17 @@ HTMLWidgets.widget({
       }else{
         svgHeight = height;
       }
-      var    margin = {top: 10, right: 10, bottom: 10, left: 10},
+      var    margin = {top: height*10/960, right: width*10/960, bottom: height*10/960, left: width*10/960},
           heightT = svgHeight - margin.top - margin.bottom,
           widthT = svgWidth - margin.left - margin.right,
           halfWidth = widthT/2,
           halfHeight = heightT/2,
           quarterWidth = widthT/4,
           quarterHeight = heightT/4,
-          titleY = 20,
+          titleY = height*20/960,
           legendsMinY = heightT - 20,
           treemapRadius = width*205/960,
-          treemapCenter = [halfWidth, halfHeight+5];
+          treemapCenter = [halfWidth, halfHeight+height*5/960];
       //end: layout conf.
       var svg = d3.select(el)
                     .append("svg")
@@ -94,7 +94,9 @@ HTMLWidgets.widget({
         if(x.options.title!=null){
           drawTitle();
         }
-        //drawFooter();
+        if(x.options.footer!=null){
+          drawFooter();  
+        }
         if(x.options.legend){
           drawLegends(rootData);  
         }
@@ -113,17 +115,7 @@ HTMLWidgets.widget({
         	.classed("tiny light", true)
         	.attr("transform", "translate("+[0, heightT]+")")
         	.attr("text-anchor", "start")
-        	.text("Remake of HowMuch.net's article 'The Global Economy by GDP'")
-        drawingArea.append("text")
-        	.classed("tiny light", true)
-        	.attr("transform", "translate("+[halfWidth, heightT]+")")
-        	.attr("text-anchor", "middle")
-        	.text("by @_Kcnarf")
-        drawingArea.append("text")
-        	.classed("tiny light", true)
-        	.attr("transform", "translate("+[widthT, heightT]+")")
-        	.attr("text-anchor", "end")
-        	.text("bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568")
+        	.text(x.options.footer)
       }
       
       function drawLegends(rootData) {
@@ -131,7 +123,6 @@ HTMLWidgets.widget({
             interLegend = 4,
             colorWidth = legendHeight*6,
             continents = rootData.children.reverse();
-            window.yourGlobalVariable = rootData;
         var legendContainer = drawingArea.append("g")
         	.classed("legend", true)
         	.attr("transform", "translate("+[0, legendsMinY]+")");
@@ -176,7 +167,9 @@ HTMLWidgets.widget({
         			.classed("cell", true)
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
         			.style("fill", function(d){
-                return d.parent.data.color;
+        			  return d.parent.data.color;
+        			  //use an individual color to make it more flexibel (parent would be the color of the continent)
+                //return d.data.color;
           		}
           		)
           		;
@@ -215,9 +208,7 @@ HTMLWidgets.widget({
           .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };
  // Code Run     
-      //d3.json("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json", function(error, rootData) {
         var rootData = JSON.parse(x.data);
-//        if (error) throw error;
         
         initData();
         initLayout(rootData);
@@ -228,8 +219,6 @@ HTMLWidgets.widget({
         	(hierarchy);
         
         drawTreemap(hierarchy);
-//      });
-      
       
       },
 

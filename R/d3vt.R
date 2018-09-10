@@ -7,13 +7,16 @@
 #' d3vt(vt_export_json(vt_testdata()))
 #' d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
 #' d3vt(d)
+#' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
-d3vt <- function(data,title = NULL,legend = FALSE,legend_title = NULL,width = NULL, height = NULL, seed = NULL, elementId = NULL) {
+d3vt <- function(data, elementId = NULL,
+                 width = NULL, height = NULL, seed = NULL,title = NULL,
+                 legend = FALSE,legend_title = NULL,footer = NULL) {
 
   # forward options using x
   x = list(
     data= data,
-    options = list(legend=legend,title=title,legend_title=legend_title,seed=seed)
+    options = list(legend=legend,title=title,legend_title=legend_title,seed=seed,footer=footer)
   )
 
   # create widget
