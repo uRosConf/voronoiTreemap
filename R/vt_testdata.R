@@ -7,13 +7,13 @@
 #' @examples
 #' vt_testdata()
 vt_testdata <- function() {
-  n <- vt_create_node("Total")
+  n <- vt_create_node("world")
 
   # continents
   cont <- c("Asia","North America","Europe","South America","Australia","Africa","Rest of the World")
   cols <-  c("#f58321","#ef1621","#77bc45","#4aaaea","#00acad","#f575a3","#592c94")
   cntrs <- c("Thailand","China","Vietnam","Malaysia")
-  n <- vt_add_nodes(n, refnode="Total",node_names=cont,colors=cols)
+  n <- vt_add_nodes(n, refnode="world",node_names=cont,colors=cols)
 
   # Asian countries
   cntr_asia <- c("China","Japan","India","South Korea","Russia", "Indonesia","Turkey",
@@ -53,6 +53,6 @@ vt_testdata <- function() {
 
   # Rest of the world
   n <- vt_add_nodes(n, refnode="Rest of the World",node_names="Rest of the World ", weights=9.41,codes="RotW")
-  #  print(n, "weight", "code", "color")
+  #  print(n, "weight", "code", "color", "leaf")
   return(n)
 }
