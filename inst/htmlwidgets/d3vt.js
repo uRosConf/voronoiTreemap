@@ -45,7 +45,7 @@ window.alert("xxxx")
       var svg, drawingArea, treemapContainer;
       //end: reusable d3Selection
       
-      d3.json("globalEconomyTest.json", function(error, rootData) {
+      d3.json("https://gist.githubusercontent.com/veltman/8c73733f106999b0b5c6670c30b90735/raw/3358486630b3807dc14bd5d5ed5ff9a4858c691d/globalEconomyByGDP.json", function(error, rootData) {
         if (error) throw error;
         
         initData();
@@ -214,7 +214,6 @@ window.alert("xxxx")
         hoverers.append("title")
           .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };
-
       },
 
       resize: function(width, height) {
