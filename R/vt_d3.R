@@ -10,7 +10,6 @@
 #' @param legend TRUE/FALSE if a legend should be printed
 #' @param legend_title NULL or a string for the title of the legend
 #' @param footer NULL or a string for the footer text
-#' @import htmlwidgets
 #' @examples
 #' vt_d3(vt_export_json(vt_testdata()))
 #' data(ExampleGDP)
@@ -29,7 +28,7 @@ vt_d3 <- function(data, elementId = NULL,
   )
 
   # create widget
-  htmlwidgets::createWidget(
+  createWidget(
     name = 'd3vt',
     x,
     width = width,
@@ -57,13 +56,13 @@ vt_d3 <- function(data, elementId = NULL,
 #'
 #' @export
 vt_d3_output <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'd3vt', width, height,
-                                 package = 'voronoiTreemap')
+  shinyWidgetOutput(outputId, 'd3vt', width, height,
+    package = 'voronoiTreemap')
 }
 
 #' @rdname vt_d3-shiny
 #' @export
 render_vt_d3 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, vt_d3_output, env, quoted = TRUE)
+  shinyRenderWidget(expr, vt_d3_output, env, quoted = TRUE)
 }

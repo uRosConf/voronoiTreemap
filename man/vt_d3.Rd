@@ -4,8 +4,9 @@
 \alias{vt_d3}
 \title{Voronoi Treemap in an htmlwidget}
 \usage{
-vt_d3(data, elementId = NULL, width = NULL, height = NULL, seed = NULL,
-  title = NULL, legend = FALSE, legend_title = NULL, footer = NULL)
+vt_d3(data, elementId = NULL, width = NULL, height = NULL,
+  seed = NULL, title = NULL, legend = FALSE, legend_title = NULL,
+  footer = NULL)
 }
 \arguments{
 \item{data}{a correct json data object}

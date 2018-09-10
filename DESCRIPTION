@@ -1,13 +1,13 @@
 Package: voronoiTreemap
 Type: Package
 Title: R package for voronoi treemaps with added interactivity by shiny
-Version: 0.1.1
+Version: 0.1.2
 Author: to be added
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: GPL-3
-Imports: data.tree,rlang,shiny, htmlwidgets
+Imports: data.tree,rlang,htmlwidgets,shiny,shinyjs
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
