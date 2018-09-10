@@ -56,12 +56,13 @@ vt_d3 <- function(data, elementId = NULL,
 #'
 #' @export
 vt_d3_output <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'd3vt', width, height, package = 'voronoiTreemap')
+  htmlwidgets::shinyWidgetOutput(outputId, 'd3vt', width, height,
+                                 package = 'voronoiTreemap')
 }
 
 #' @rdname vt_d3-shiny
 #' @export
 render_vt_d3 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, d3vtOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, vt_d3_output, env, quoted = TRUE)
 }

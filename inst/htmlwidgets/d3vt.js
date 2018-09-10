@@ -171,9 +171,9 @@ HTMLWidgets.widget({
         			.classed("cell", true)
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
         			.style("fill", function(d){
-        			  return d.parent.data.color;
+        			  //return d.parent.data.color;
         			  //use an individual color to make it more flexibel (parent would be the color of the continent)
-                //return d.data.color;
+                return d.data.color;
           		}
           		)
           		;
@@ -213,7 +213,7 @@ HTMLWidgets.widget({
       };
  // Code Run     
         var rootData = JSON.parse(x.data);
-        
+//        window.testvar=rootData;
         initData();
         initLayout(rootData);
         
