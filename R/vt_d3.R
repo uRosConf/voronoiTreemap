@@ -11,7 +11,7 @@
 #' @param legend_title NULL or a string for the title of the legend
 #' @param footer NULL or a string for the footer text
 #' @import htmlwidgets
-#' @examples 
+#' @examples
 #' vt_d3(vt_export_json(vt_testdata()))
 #' d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
 #' vt_d3(d)
@@ -59,7 +59,7 @@ vt_d3_output <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'd3vt', width, height, package = 'voronoiTreemap')
 }
 
-#' @rdname d3vt-shiny
+#' @rdname vt_d3-shiny
 #' @export
 render_vt_d3 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
