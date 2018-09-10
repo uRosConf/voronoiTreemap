@@ -1,0 +1,9 @@
+dependencies:
+  - name: d3vt
+    version: 1.0.3
+    src: htmlwidgets/lib/d3
+    script: 
+      - d3.v4.min.js
+      - plugins/d3-voronoi-treemap.js
+      - plugins/d3-voronoi-map.js
+      - plugins/d3-weighted-voronoi.js
