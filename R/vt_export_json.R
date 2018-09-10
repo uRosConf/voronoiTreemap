@@ -1,5 +1,7 @@
 #ll <- ToListExplicit(vt_testdata(), unname=FALSE, nameName = "name", childrenName = "children")
 vt_make_json <- function(node) {
+  op <- options("useFancyQuotes")
+  options(useFancyQuotes=FALSE)
   ll <- ToListExplicit(node, unname=FALSE, nameName = "name", childrenName = "children")
 
   json <- paste0("{",dQuote("name"),":",dQuote(ll$name))
@@ -32,6 +34,7 @@ vt_make_json <- function(node) {
       json <- paste0(json,",")
     }
   }
+  options(useFancyQuotes = op)
   json <- paste0(json,"]}")
 }
 
