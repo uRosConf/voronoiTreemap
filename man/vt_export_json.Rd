@@ -20,6 +20,7 @@ NULL or a character vector
 exports a node to suitable json required by voronoi javascript function
 }
 \examples{
+n <- vt_testdata()
 vt_export_json(n)
 vt_export_json(n, file=tempfile())
 }
