@@ -27,6 +27,9 @@ vt_make_json <- function(node) {
       }
       json <- paste0(json,dQuote("name"),":",dQuote(tmp$name),",")
       json <- paste0(json,dQuote("weight"),":",tmp$weight,",")
+      if (!is.null(tmp$color)) {
+        json <- paste0(json,dQuote("color"),":",tmp$color,",")
+      }
       json <- paste0(json,dQuote("code"),":",dQuote(tmp$code),"}")
     }
     json <- paste0(json,"]}")
