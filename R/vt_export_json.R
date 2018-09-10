@@ -8,16 +8,9 @@
 #'
 #' @return NULL
 #' @export
-#'
+#' @seealso vt_create_node vt_add_nodes
 #' @examples
-#' n <- vt_create_node("Total")
-#' n <- vt_add_nodes(n, refnode="Total",node_names=c("Asia","Europe"),
-#'   colors=c("red","blue"))
-#' n <- vt_add_nodes(n, refnode="Asia",node_names=c("China","Thailand"),
-#'   weights=c(0.5, 0.8), codes=c("CN","TH"))
-#' n <- vt_add_nodes(n, refnode="Europe",node_names=c("Netherlands","Austria"),
-#'   weights=c(0.9, 1.1), codes=c("NL","AT"))
-#' vt_export_json(node=n, file=tempfile())
+#' vt_export_json(n, file=tempfile())
 vt_export_json <- function(node, file) {
   stopifnot("Node" %in% class(node))
   stopifnot("R6" %in% class(node))

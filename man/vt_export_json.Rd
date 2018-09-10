@@ -16,12 +16,8 @@ from  \code{\link{vt_add_nodes}}}
 exports a node to suitable json required by voronoi javascript function
 }
 \examples{
-n <- vt_create_node("Total")
-n <- vt_add_nodes(n, refnode="Total",node_names=c("Asia","Europe"),
-  colors=c("red","blue"))
-n <- vt_add_nodes(n, refnode="Asia",node_names=c("China","Thailand"),
-  weights=c(0.5, 0.8), codes=c("CN","TH"))
-n <- vt_add_nodes(n, refnode="Europe",node_names=c("Netherlands","Austria"),
-  weights=c(0.9, 1.1), codes=c("NL","AT"))
-vt_export_json(node=n, file=tempfile())
+vt_export_json(n, file=tempfile())
+}
+\seealso{
+vt_create_node vt_add_nodes
 }
