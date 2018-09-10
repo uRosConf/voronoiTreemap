@@ -1,0 +1,1 @@
+data(ExampleGDP, package="voronoiTreemap")
