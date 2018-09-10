@@ -4,7 +4,7 @@
 \alias{d3vt}
 \title{<Add Title>}
 \usage{
-d3vt(title = NULL, legend = FALSE, width = NULL, height = NULL,
+d3vt(data, title = NULL, legend = FALSE, width = NULL, height = NULL,
   elementId = NULL)
 }
 \description{
