@@ -1,15 +1,23 @@
 #' Voronoi Treemap in an htmlwidget
 #'
 #' Function to generate an htmlwidget with an htmlwidget
-#'
+#' @param data a correct json data object
+#' @param elementId optional a custom elementId to be returned
+#' @param width width of the widget
+#' @param height height of the widget
+#' @param seed if defined, the plot is fixed
+#' @param title NULL or a string for the title
+#' @param legend TRUE/FALSE if a legend should be printed
+#' @param legend_title NULL or a string for the title of the legend
+#' @param footer NULL or a string for the footer text
 #' @import htmlwidgets
 #' @examples 
-#' d3vt(vt_export_json(vt_testdata()))
+#' vt_d3(vt_export_json(vt_testdata()))
 #' d <- paste(readLines(file.path(system.file(package="voronoiTreemap"),"htmlwidgets/globalEconomyTest.json")),collapse="")
-#' d3vt(d)
+#' vt_d3(d)
 #' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
-d3vt <- function(data, elementId = NULL,
+vt_d3 <- function(data, elementId = NULL,
                  width = NULL, height = NULL, seed = NULL,title = NULL,
                  legend = FALSE,legend_title = NULL,footer = NULL) {
 
@@ -44,16 +52,16 @@ d3vt <- function(data, elementId = NULL,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name d3vt-shiny
+#' @name vt_d3-shiny
 #'
 #' @export
-d3vtOutput <- function(outputId, width = '100%', height = '400px'){
+vt_d3_output <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'd3vt', width, height, package = 'voronoiTreemap')
 }
 
 #' @rdname d3vt-shiny
 #' @export
-renderD3vt <- function(expr, env = parent.frame(), quoted = FALSE) {
+render_vt_d3 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, d3vtOutput, env, quoted = TRUE)
 }

@@ -28,17 +28,21 @@ HTMLWidgets.widget({
       }else{
         svgHeight = height;
       }
-      var    margin = {top: height*10/960, right: width*10/960, bottom: height*10/960, left: width*10/960},
+      var    margin = {top: height*10/500, right: width*10/960, bottom: height*10/500, left: width*10/960},
           heightT = svgHeight - margin.top - margin.bottom,
           widthT = svgWidth - margin.left - margin.right,
           halfWidth = widthT/2,
           halfHeight = heightT/2,
           quarterWidth = widthT/4,
           quarterHeight = heightT/4,
-          titleY = height*20/960,
-          legendsMinY = heightT - 20,
-          treemapRadius = width*205/960,
-          treemapCenter = [halfWidth, halfHeight+height*5/960];
+          titleY = height*20/500,
+          legendsMinY = heightT - height*20/500,
+          treemapCenter = [halfWidth, halfHeight+height*5/500];
+          var treemapRadius = Math.min(width*205/960, halfHeight-height*10/500, halfWidth-width*10/960);
+          if(!x.options.legend){
+            var treemapRadius = Math.min(width*340/960, halfHeight-height*10/500,halfWidth-width*10/960);
+          }
+          
       //end: layout conf.
       var svg = d3.select(el)
                     .append("svg")
@@ -119,8 +123,8 @@ HTMLWidgets.widget({
       }
       
       function drawLegends(rootData) {
-        var legendHeight = 13,
-            interLegend = 4,
+        var legendHeight = height*13/500,
+            interLegend = height*4/500,
             colorWidth = legendHeight*6,
             continents = rootData.children.reverse();
         var legendContainer = drawingArea.append("g")
