@@ -3,3 +3,6 @@
 ## htmlwidgets
 
 create a widget: https://www.htmlwidgets.org/develop_intro.html
+
+## js-library
+https://github.com/Kcnarf/d3-voronoi-treemap
