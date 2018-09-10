@@ -3,7 +3,6 @@
 export(d3vt)
 export(d3vtOutput)
 export(renderD3vt)
-export(voroTree)
 export(voronoi_testdata_example)
 export(vt_add_nodes)
 export(vt_create_node)
