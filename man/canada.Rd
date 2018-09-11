@@ -11,6 +11,7 @@
   \item{h3}{Leaf names of third-level values (intermediate_aggregate)}
   \item{color}{colors in which the plot-regions will be filled}
   \item{weight}{CPI in percent of the overall total}
+  \item{codes}{NAs}
 }}
 \usage{
 data(canada)

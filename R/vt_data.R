@@ -15,7 +15,7 @@
 #'   \item{codes}{short labels used for overlays in plotting}
 #' }
 #' @keywords datasets
-#' @examples 
+#' @examples
 #' data("ExampleGDP")
 #' head(ExampleGDP)
 "ExampleGDP"
@@ -35,9 +35,10 @@
 #'   \item{h3}{Leaf names of third-level values (intermediate_aggregate)}
 #'   \item{color}{colors in which the plot-regions will be filled}
 #'   \item{weight}{CPI in percent of the overall total}
+#'   \item{codes}{NAs}
 #' }
 #' @keywords datasets
-#' @examples 
+#' @examples
 #' data("canada")
 #' head(canada)
 "canada"
