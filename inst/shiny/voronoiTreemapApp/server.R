@@ -84,13 +84,13 @@ server <- function(session, input, output) {
   }, priority=6)
 
   observeEvent(input$sel_level1, {
-    cur_lev1(input$sel_level1)
+    cur_lev1(as.character(input$sel_level1))
   })
   observeEvent(input$sel_level2, {
-    cur_lev2(input$sel_level2)
+    cur_lev2(as.character(input$sel_level2))
   })
   observeEvent(input$sel_level3, {
-    cur_lev3(input$sel_level3)
+    cur_lev3(as.character(input$sel_level3))
   })
 
   observeEvent(input$sel_color, {
@@ -117,6 +117,8 @@ server <- function(session, input, output) {
     updateSelectInput(session, "sel_color", choices=c("", available_vars()))
     updateSelectInput(session, "sel_weight", choices=c("", available_vars()))
     updateSelectInput(session, "sel_codes", choices=c("", available_vars()))
+
+    shinyjs::hide("row_error")
   })
 
   output$curdatadf <- DT::renderDataTable({
@@ -136,19 +138,41 @@ server <- function(session, input, output) {
     shinyjs::hide("row_btn_showtable")
     shinyjs::show("row_btn_plot")
     shinyjs::hide("row_plot")
+    shinyjs::hide("row_error")
   })
 
   output$vt <- render_vt_d3({
     df <- curdata()
+    if (nrow(df)==0) {
+      return(NULL)
+    }
 
-    out <- data.frame(h1=df[[cur_lev1()]])
-    out$h2 <- df[[cur_lev2()]]
-    out$h3 <- df[[cur_lev3()]]
-    out$color <- df[[cur_colorvar()]]
+    if (showPlotBtn()==FALSE) {
+      shinyjs::show("row_table")
+      shinyjs::hide("row_btn_showtable")
+
+      return(NULL)
+    }
+
+
+
+    out <- data.frame(h1=as.character(df[[cur_lev1()]]))
+    out$h2 <- as.character(df[[cur_lev2()]])
+    out$h3 <- as.character(df[[cur_lev3()]])
+    out$color <- as.character(df[[cur_colorvar()]])
     out$weight <- df[[cur_weightvar()]]
-    out$codes <- df[[cur_codesvar()]]
+    out$codes <- as.character(df[[cur_codesvar()]])
 
-    d <-  try(vt_input_from_df(out), silent=TRUE)
+    #replace nas
+    ii <- which(is.na(out$codes))
+    legend <- FALSE
+    #if (length(ii)>0) {
+    #  legend <- FALSE
+    #} else {
+    #  legend <- TRUE
+    #}
+
+    d <-  try(vt_input_from_df(out, scaleToPerc=input$scaleToPerc), silent=TRUE)
     if ("try-error" %in% class(d)) {
       shinyjs::show("row_error")
       cur_lev1 <- reactiveVal("")
@@ -167,8 +191,8 @@ server <- function(session, input, output) {
       return(NULL)
     } else {
       shinyjs::hide("row_error")
-      vt_d3(vt_export_json(d))
+      #shinyjs::html("row_plot", "") # clear div
+      vt_d3(vt_export_json(d), legend=legend)
     }
   })
-
 }

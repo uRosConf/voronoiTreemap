@@ -3,7 +3,6 @@ ui <- navbarPage("Voronoi-Diagramm",
   tabPanel("Data",
     shinyjs::useShinyjs(),
     sidebarPanel(
-      h2("Select a df"),
       fluidRow(
         column(12, selectInput("selData", label="Select Dataframe", choices=available_datasets()))
       ),
@@ -28,6 +27,9 @@ ui <- navbarPage("Voronoi-Diagramm",
       fluidRow(
         column(12, selectInput("sel_codes", label="Var holding labels", choices=NULL))
       ),
+      fluidRow(
+        column(12, selectInput("scaleToPerc", label="Scale weights to %", choices=c(FALSE,TRUE)))
+      ),
       fluidRow(id="row_btn_reset", column(12, actionButton("btn_reset", label="Reset choices")))
     ),
     mainPanel(
@@ -35,7 +37,7 @@ ui <- navbarPage("Voronoi-Diagramm",
         column(12, DT::dataTableOutput("curdatadf"))
       ),
 
-      shinyjs::hidden(fluidRow(id="row_error", h1("an error has occured"))),
+      shinyjs::hidden(fluidRow(id="row_error", h2("An Error has occured. Please re-map your variables"))),
       shinyjs::hidden(fluidRow(id="row_btn_plot", column(12, actionButton("btn_plot", label="Create Plot", class="success")))),
       shinyjs::hidden(fluidRow(id="row_btn_showtable", column(12, actionButton("btn_showtable", label="Show Table", class="success")))),
       shinyjs::hidden(fluidRow(id="row_plot", column(12, vt_d3_output("vt"))))
