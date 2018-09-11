@@ -84,7 +84,7 @@ vt_input_from_df <- function(inp, scaleToPerc=FALSE) {
       }
       curcode <- tmp$codes[j]
       if (is.na(curcode)) {
-        curcode <- substr(tmp$h3,1,2)
+        curcode <- substr(tmp$h3[j],1,2)
       }
       n <- vt_add_nodes(n, refnode=ref, node_names=as.character(curnode),
         weights=tmp$weight[j], codes=curcode, colors=curcol)
