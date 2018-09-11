@@ -21,6 +21,11 @@
 #' data(ExampleGDP)
 #' gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP))
 #' vt_d3(gdp_json)
+#' data(canada)
+#' canada$codes <- canada$h3
+#' canada <- canada[canada$h1=="Canada",]
+#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+#' vt_d3(vt_export_json(canadaH))
 #' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
 vt_d3 <- function(data, elementId = NULL,
