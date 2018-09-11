@@ -29,16 +29,20 @@ ui <- navbarPage("Voronoi-Diagramm",
       fluidRow(
         column(12, selectInput("sel_codes", label="Var holding labels", choices=NULL))
       ),
-      fluidRow(id="reset_row", column(12, actionButton("btn_reset", label="Reset choices")))
+      fluidRow(id="row_btn_reset", column(12, actionButton("btn_reset", label="Reset choices")))
     ),
     mainPanel(
-      fluidRow(
+      fluidRow(id="row_table",
         column(12, DT::dataTableOutput("curdatadf"))
-      )
+      ),
+      shinyjs::hidden(fluidRow(id="row_btn_plot", column(12, actionButton("btn_plot", label="Create Plot", class="success")))),
+      shinyjs::hidden(fluidRow(id="row_btn_showtable", column(12, actionButton("btn_showtable", label="Show Table", class="success")))),
+
+      shinyjs::hidden(fluidRow(id="row_plot", column(12, vt_d3_output("vt"))))
     )
-  ),
-  tabPanel("Plot",
-    fluidRow(column(12, h1("The Plot"))),
-    fluidRow(column(12, vt_d3_output("vt")))
-  )
+  )#,
+  #tabPanel("Plot",
+  #  fluidRow(column(12, h1("The Plot")))#,
+  #  #fluidRow(column(12, vt_d3_output("vt")))
+  #)
 )

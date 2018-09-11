@@ -13,6 +13,23 @@ server <- function(session, input, output) {
     colnames(curdata())
   })
 
+
+  showPlotBtn <- reactive({
+    if (cur_lev1()!="" & cur_lev2()!="" & cur_lev3()!="" & cur_colorvar()!="" & cur_weightvar()!="" & cur_codesvar()!="") {
+      return(TRUE)
+    } else {
+      return(FALSE)
+    }
+  })
+
+  observe({
+    if (showPlotBtn()) {
+      shinyjs::show("row_btn_plot")
+    } else {
+      shinyjs::hide("row_btn_plot")
+    }
+  })
+
   observe({
     cn <- setdiff(vnames(), c(cur_colorvar(), cur_weightvar(), cur_codesvar(), cur_lev1(), cur_lev2(), cur_lev3()))
     available_vars(cn)
@@ -30,6 +47,13 @@ server <- function(session, input, output) {
       }
       shinyjs::html(id="name_of_dataset", html=val)
     }
+
+    cur_lev1("")
+    cur_lev2("")
+    cur_lev3("")
+    cur_colorvar("")
+    cur_weightvar("")
+    cur_codesvar("")
 
     allv <- available_vars()
     updateSelectInput(session, "sel_level1", choices=allv)
@@ -97,14 +121,35 @@ server <- function(session, input, output) {
     updateSelectInput(session, "sel_codes", choices=c("", available_vars()))
   })
 
-
   output$curdatadf <- renderDataTable({
     DT::datatable(curdata(),
       options = list(lengthMenu = c(5, 30, 50), pageLength = 5, searching=FALSE))
   })
 
+  observeEvent(input$btn_plot, {
+    shinyjs::hide("row_table")
+    shinyjs::show("row_btn_showtable")
+    shinyjs::hide("row_btn_plot")
+    shinyjs::show("row_plot")
+  })
+
+  observeEvent(input$btn_showtable, {
+    shinyjs::show("row_table")
+    shinyjs::hide("row_btn_showtable")
+    shinyjs::show("row_btn_plot")
+    shinyjs::hide("row_plot")
+  })
+
   output$vt <- render_vt_d3({
-    d <- vt_export_json(vt_input_from_df(curdata()))
+    df <- curdata()
+
+    out <- data.frame(h1=df[[cur_lev1()]])
+    out$h2 <- df[[cur_lev2()]]
+    out$h3 <- df[[cur_lev3()]]
+    out$color <- df[[cur_colorvar()]]
+    out$weight <- df[[cur_weightvar()]]
+    out$codes <- df[[cur_codesvar()]]
+    d <- vt_export_json(vt_input_from_df(out))
     vt_d3(d)
   })
 
