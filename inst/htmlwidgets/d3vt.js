@@ -178,6 +178,7 @@ HTMLWidgets.widget({
                 return d.data.color;
           		}).style("stroke",x.colors.border).style("stroke-width",x.size.border)
           		;
+        if(x.options.label){
         var labels = treemapContainer.append("g")
         	.classed('labels', true)
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
@@ -196,6 +197,7 @@ HTMLWidgets.widget({
         	  return(d.data.code)
           	//return (d.data.weight<1)? d.data.code : d.data.name;
         	});
+        }
 //        labels.append("text")
 //        	.classed("value", true)
 //        	.text(function(d){ return d.data.weight+"%"; });

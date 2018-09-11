@@ -21,11 +21,16 @@
 #' data(ExampleGDP)
 #' gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP))
 #' vt_d3(gdp_json)
+#' data(canada)
+#' canada$codes <- canada$h3
+#' canada <- canada[canada$h1=="Canada",]
+#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+#' vt_d3(vt_export_json(canadaH))
 #' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
 vt_d3 <- function(data, elementId = NULL,
                  width = NULL, height = NULL, seed = NULL,title = NULL,
-                 legend = FALSE,legend_title = NULL,footer = NULL,
+                 legend = FALSE,legend_title = NULL,footer = NULL, label = TRUE,
                  color_circle="#aaaaaa",color_border="#ffffff",color_label="#000000",
                  size_border="1px",size_border_hover="3px",size_circle="2px") {
 
@@ -33,7 +38,7 @@ vt_d3 <- function(data, elementId = NULL,
   x = list(
     data= data,
     options = list(legend=legend,title=title,legend_title=legend_title,
-                   seed=seed,footer=footer),
+                   seed=seed,footer=footer,label=label),
     colors = list(circle = color_circle, border = color_border, label = color_label),
     size = list(border=size_border,border_hover=size_border_hover,circle=size_circle)
   )

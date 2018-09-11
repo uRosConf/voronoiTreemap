@@ -70,7 +70,7 @@ vt_input_from_df <- function(inp, scaleToPerc=FALSE) {
       groupcol <- tmp$color[!is.na(tmp$color)][1]
     }
 
-    n <- vt_add_nodes(n, refnode="Total",node_names=ref, colors=groupcol)
+    n <- vt_add_nodes(n, refnode=inp[1,1],node_names=ref, colors=groupcol)
 
     for (j in 1:nrow(tmp)) {
       curnode <- tmp$h3[j]
