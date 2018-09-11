@@ -23,9 +23,12 @@ server <- function(session, input, output) {
 
   observe({
     if (showPlotBtn()) {
-      shinyjs::show("row_btn_plot")
+      shinyjs::show("row_plot")
+      shinyjs::hide("row_table")
+
     } else {
-      shinyjs::hide("row_btn_plot")
+      shinyjs::hide("row_plot")
+      shinyjs::show("row_table")
     }
   })
 
@@ -45,7 +48,6 @@ server <- function(session, input, output) {
         curdata(NULL)
       }
       shinyjs::hide("row_error")
-      shinyjs::html(id="name_of_dataset", html=val)
     }
 
     cur_lev1("")
@@ -119,6 +121,8 @@ server <- function(session, input, output) {
     updateSelectInput(session, "sel_codes", choices=c("", available_vars()))
 
     shinyjs::hide("row_error")
+    shinyjs::hide("row_plot")
+    shinyjs::show("row_table")
   })
 
   output$curdatadf <- DT::renderDataTable({
@@ -129,14 +133,14 @@ server <- function(session, input, output) {
   observeEvent(input$btn_plot, {
     shinyjs::hide("row_table")
     shinyjs::show("row_btn_showtable")
-    shinyjs::hide("row_btn_plot")
+    #shinyjs::hide("row_btn_plot")
     shinyjs::show("row_plot")
   })
 
   observeEvent(input$btn_showtable, {
     shinyjs::show("row_table")
     shinyjs::hide("row_btn_showtable")
-    shinyjs::show("row_btn_plot")
+    #shinyjs::show("row_btn_plot")
     shinyjs::hide("row_plot")
     shinyjs::hide("row_error")
   })
@@ -150,11 +154,8 @@ server <- function(session, input, output) {
     if (showPlotBtn()==FALSE) {
       shinyjs::show("row_table")
       shinyjs::hide("row_btn_showtable")
-
       return(NULL)
     }
-
-
 
     out <- data.frame(h1=as.character(df[[cur_lev1()]]))
     out$h2 <- as.character(df[[cur_lev2()]])
@@ -191,7 +192,8 @@ server <- function(session, input, output) {
       return(NULL)
     } else {
       shinyjs::hide("row_error")
-      #shinyjs::html("row_plot", "") # clear div
+      shinyjs::html("vt", "") # clear div
+      shinyjs::html("row_table", "") # clear div
       vt_d3(vt_export_json(d), legend=legend)
     }
   })
