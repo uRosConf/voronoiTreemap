@@ -1,6 +1,6 @@
 server <- function(input, output) {
-  curdata <- reactiveVal(NULL)
-  
+  curdata <- reactiveVal({NULL})
+
   observeEvent(input$selData, {
     val <- input$selData
     if (!is.null(val)) {
@@ -13,13 +13,15 @@ server <- function(input, output) {
       shinyjs::html(id="name_of_dataset", html=val)
     }
   })
-  
+
   output$curdatadf <- renderDataTable({
     curdata()
   })
-  
-  #output$vt <- render_vt_d3(
-  #  
-  #)
-  
+
+  output$vt <- render_vt_d3({
+    d <- vt_export_json(vt_input_from_df(curdata()))
+    vt_d3(d)
+    #vt_d3(djson)
+  })
+
 }
