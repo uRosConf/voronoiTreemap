@@ -10,6 +10,12 @@
 #' @param legend TRUE/FALSE if a legend should be printed
 #' @param legend_title NULL or a string for the title of the legend
 #' @param footer NULL or a string for the footer text
+#' @param color_circle color for the outer circle
+#' @param color_border color for the inner lines
+#' @param color_label color for the label in the plot
+#' @param size_border thickness of the borders in css style, e.g. '1px'
+#' @param size_border_hover thickness of the borders when hovering in css style, e.g. '3px'
+#' @param size_circle thickness of the circle in css style, e.g. '2px'
 #' @examples
 #' vt_d3(vt_export_json(vt_testdata()))
 #' data(ExampleGDP)
@@ -19,12 +25,17 @@
 #' @export
 vt_d3 <- function(data, elementId = NULL,
                  width = NULL, height = NULL, seed = NULL,title = NULL,
-                 legend = FALSE,legend_title = NULL,footer = NULL) {
+                 legend = FALSE,legend_title = NULL,footer = NULL,
+                 color_circle="#aaaaaa",color_border="#ffffff",color_label="#000000",
+                 size_border="1px",size_border_hover="3px",size_circle="2px") {
 
   # forward options using x
   x = list(
     data= data,
-    options = list(legend=legend,title=title,legend_title=legend_title,seed=seed,footer=footer)
+    options = list(legend=legend,title=title,legend_title=legend_title,
+                   seed=seed,footer=footer),
+    colors = list(circle = color_circle, border = color_border, label = color_label),
+    size = list(border=size_border,border_hover=size_border_hover,circle=size_circle)
   )
 
   # create widget
