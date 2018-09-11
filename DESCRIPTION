@@ -2,7 +2,13 @@ Package: voronoiTreemap
 Type: Package
 Title: R package for voronoi treemaps with added interactivity by shiny
 Version: 0.1.2
-Author: to be added
+Authors@R: c(
+  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut")),
+  person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut", "cre")),
+  person("Malaver", "Vojvodic", email = "mmala027@uottawa.ca", role = c("aut")),
+  person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js library in htmlwidgets/lib, http://d3js.org"),
+  person("Franck", "Lebeau", role = c("aut", "cph"), comment = "d3-voronoi-treemap library, https://github.com/Kcnarf/d3-voronoi-treemap")
+  )
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
