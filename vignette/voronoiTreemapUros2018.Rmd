@@ -68,3 +68,18 @@ canadaH <- vt_export_json(vt_input_from_df(canada,scaleToPerc = FALSE))
 vt_d3(canadaH, label=FALSE,width = 400,height = 400, color_border = "#000000")
 ```
 
+## Shiny App I
+
+```{r, out.width = "800px"}
+knitr::include_graphics("shiny1.jpg")
+```
+
+## Shiny App II
+```{r, out.width = "800px"}
+knitr::include_graphics("shiny2.jpg")
+```
+
+## Conclusion
+ - Package is 90% ready, hopefully available on CRAN soon.
+ - Great event!! Thanks to the organizers and attendees.
+ - [https://github.com/uros2018/voronoiTreemap](https://github.com/uros2018/voronoiTreemap)
