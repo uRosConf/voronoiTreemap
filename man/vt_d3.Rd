@@ -6,7 +6,7 @@
 \usage{
 vt_d3(data, elementId = NULL, width = NULL, height = NULL, seed = NULL,
   title = NULL, legend = FALSE, legend_title = NULL, footer = NULL,
-  color_circle = "#aaaaaa", color_border = "#ffffff",
+  label = TRUE, color_circle = "#aaaaaa", color_border = "#ffffff",
   color_label = "#000000", size_border = "1px", size_border_hover = "3px",
   size_circle = "2px")
 }
@@ -28,6 +28,8 @@ vt_d3(data, elementId = NULL, width = NULL, height = NULL, seed = NULL,
 \item{legend_title}{NULL or a string for the title of the legend}
 
 \item{footer}{NULL or a string for the footer text}
+
+\item{label}{TRUE/FALSE if the labels should be printed}
 
 \item{color_circle}{color for the outer circle}
 
@@ -55,6 +57,10 @@ vt_d3(gdp_json)
 data(canada)
 canada$codes <- canada$h3
 canada <- canada[canada$h1=="Canada",]
+canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+vt_d3(vt_export_json(canadaH))
+#Example with coloring from scales package
+canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
 canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 vt_d3(vt_export_json(canadaH))
 }

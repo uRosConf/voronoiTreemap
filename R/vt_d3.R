@@ -10,6 +10,7 @@
 #' @param legend TRUE/FALSE if a legend should be printed
 #' @param legend_title NULL or a string for the title of the legend
 #' @param footer NULL or a string for the footer text
+#' @param label TRUE/FALSE if the labels should be printed
 #' @param color_circle color for the outer circle
 #' @param color_border color for the inner lines
 #' @param color_label color for the label in the plot
@@ -24,6 +25,10 @@
 #' data(canada)
 #' canada$codes <- canada$h3
 #' canada <- canada[canada$h1=="Canada",]
+#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+#' vt_d3(vt_export_json(canadaH))
+#' #Example with coloring from scales package
+#' canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
 #' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 #' vt_d3(vt_export_json(canadaH))
 #' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
