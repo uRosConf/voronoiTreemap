@@ -46,8 +46,8 @@ HTMLWidgets.widget({
       //end: layout conf.
       var svg = d3.select(el)
                     .append("svg")
-                    .style("width", svgWidth)
-                    .style("height", svgHeight);
+                    .style("width", "100%")
+                    .style("height", "100%");
                     //.style("background-color","rgb(250,250,250)");
       //begin: treemap conf.
       var _voronoiTreemap = d3.voronoiTreemap();
