@@ -94,7 +94,9 @@ HTMLWidgets.widget({
         treemapContainer.append("path")
         	.classed("world", true)
         	.attr("transform", "translate("+[-treemapRadius,-treemapRadius]+")")
-        	.attr("d", "M"+circlingPolygon.join(",")+"Z");
+        	.attr("d", "M"+circlingPolygon.join(",")+"Z")
+        	.style("stroke",x.colors.circle).style("stroke-width",x.size.circle)
+        	;
         if(x.options.title!=null){
           drawTitle();
         }
@@ -174,8 +176,7 @@ HTMLWidgets.widget({
         			  //return d.parent.data.color;
         			  //use an individual color to make it more flexibel (parent would be the color of the continent)
                 return d.data.color;
-          		}
-          		)
+          		}).style("stroke",x.colors.border).style("stroke-width",x.size.border)
           		;
         var labels = treemapContainer.append("g")
         	.classed('labels', true)
@@ -207,7 +208,21 @@ HTMLWidgets.widget({
         		.append("path")
         			.classed("hoverer", true)
         			.attr("d", function(d){ return "M"+d.polygon.join(",")+"z"; })
-        			.style("fill","transparent");
+        			.style("fill","transparent")
+        			.style("stroke",x.colors.border);//.style("stroke-width","0px");
+// inject a css style for hover             
+//TODO: make more than the stroke width changeable
+        var css = '.hoverer:hover{ stroke-width:';
+        css=css.concat(x.size.border_hover);
+        css=css.concat('}');
+       var style = document.createElement('style');
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+// end inject a css style for hover      
         hoverers.append("title")
           .text(function(d) { return d.data.name + "\n" + d.value+"%"; });
       };

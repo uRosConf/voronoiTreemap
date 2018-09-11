@@ -4,9 +4,11 @@
 \alias{vt_d3}
 \title{Voronoi Treemap in an htmlwidget}
 \usage{
-vt_d3(data, elementId = NULL, width = NULL, height = NULL,
-  seed = NULL, title = NULL, legend = FALSE, legend_title = NULL,
-  footer = NULL)
+vt_d3(data, elementId = NULL, width = NULL, height = NULL, seed = NULL,
+  title = NULL, legend = FALSE, legend_title = NULL, footer = NULL,
+  color_circle = "#aaaaaa", color_border = "#ffffff",
+  color_label = "#000000", size_border = "1px", size_border_hover = "3px",
+  size_circle = "2px")
 }
 \arguments{
 \item{data}{a correct json data object}
@@ -26,6 +28,18 @@ vt_d3(data, elementId = NULL, width = NULL, height = NULL,
 \item{legend_title}{NULL or a string for the title of the legend}
 
 \item{footer}{NULL or a string for the footer text}
+
+\item{color_circle}{color for the outer circle}
+
+\item{color_border}{color for the inner lines}
+
+\item{color_label}{color for the label in the plot}
+
+\item{size_border}{thickness of the borders in css style, e.g. '1px'}
+
+\item{size_border_hover}{thickness of the borders when hovering in css style, e.g. '3px'}
+
+\item{size_circle}{thickness of the circle in css style, e.g. '2px'}
 }
 \description{
 Function to generate an htmlwidget with an htmlwidget
