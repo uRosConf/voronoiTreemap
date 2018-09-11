@@ -44,6 +44,7 @@ server <- function(session, input, output) {
       } else {
         curdata(NULL)
       }
+      shinyjs::hide("row_error")
       shinyjs::html(id="name_of_dataset", html=val)
     }
 
@@ -146,8 +147,28 @@ server <- function(session, input, output) {
     out$color <- df[[cur_colorvar()]]
     out$weight <- df[[cur_weightvar()]]
     out$codes <- df[[cur_codesvar()]]
-    d <- vt_export_json(vt_input_from_df(out))
-    vt_d3(d)
+
+    d <-  try(vt_input_from_df(out), silent=TRUE)
+    if ("try-error" %in% class(d)) {
+      shinyjs::show("row_error")
+      cur_lev1 <- reactiveVal("")
+      cur_lev2 <- reactiveVal("")
+      cur_lev3 <- reactiveVal("")
+      cur_colorvar <- reactiveVal("")
+      cur_weightvar <- reactiveVal("")
+      cur_codesvar <- reactiveVal("")
+
+      updateSelectInput(session, "selData", choices=available_datasets())
+      updateSelectInput(session, "sel_level2", choices=c("", available_vars()))
+      updateSelectInput(session, "sel_level3", choices=c("", available_vars()))
+      updateSelectInput(session, "sel_color", choices=c("", available_vars()))
+      updateSelectInput(session, "sel_weight", choices=c("", available_vars()))
+      updateSelectInput(session, "sel_codes", choices=c("", available_vars()))
+      return(NULL)
+    } else {
+      shinyjs::hide("row_error")
+      vt_d3(vt_export_json(d))
+    }
   })
 
 }

@@ -5,8 +5,7 @@ ui <- navbarPage("Voronoi-Diagramm",
     sidebarPanel(
       h2("Select a df"),
       fluidRow(
-        column(12, selectInput("selData", label="Select Dataframe",
-          choices=c("ExampleGDP","canada")))
+        column(12, selectInput("selData", label="Select Dataframe", choices=available_datasets()))
       ),
       fluidRow(
         column(12, p(id="name_of_dataset", ""))
@@ -35,9 +34,10 @@ ui <- navbarPage("Voronoi-Diagramm",
       fluidRow(id="row_table",
         column(12, DT::dataTableOutput("curdatadf"))
       ),
+
+      shinyjs::hidden(fluidRow(id="row_error", h1("an error has occured"))),
       shinyjs::hidden(fluidRow(id="row_btn_plot", column(12, actionButton("btn_plot", label="Create Plot", class="success")))),
       shinyjs::hidden(fluidRow(id="row_btn_showtable", column(12, actionButton("btn_showtable", label="Show Table", class="success")))),
-
       shinyjs::hidden(fluidRow(id="row_plot", column(12, vt_d3_output("vt"))))
     )
   )
