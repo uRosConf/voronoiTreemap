@@ -40,9 +40,5 @@ ui <- navbarPage("Voronoi-Diagramm",
 
       shinyjs::hidden(fluidRow(id="row_plot", column(12, vt_d3_output("vt"))))
     )
-  )#,
-  #tabPanel("Plot",
-  #  fluidRow(column(12, h1("The Plot")))#,
-  #  #fluidRow(column(12, vt_d3_output("vt")))
-  #)
+  )
 )

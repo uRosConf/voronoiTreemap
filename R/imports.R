@@ -4,5 +4,6 @@
 #' @importFrom data.tree FindNode Node ToListExplicit
 #' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget
 #' @import shiny
+#' @importFrom DT renderDataTable dataTableOutput
 #' @importFrom shinyjs html
 NULL

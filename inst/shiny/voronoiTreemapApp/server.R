@@ -13,7 +13,6 @@ server <- function(session, input, output) {
     colnames(curdata())
   })
 
-
   showPlotBtn <- reactive({
     if (cur_lev1()!="" & cur_lev2()!="" & cur_lev3()!="" & cur_colorvar()!="" & cur_weightvar()!="" & cur_codesvar()!="") {
       return(TRUE)
@@ -54,7 +53,7 @@ server <- function(session, input, output) {
     cur_colorvar("")
     cur_weightvar("")
     cur_codesvar("")
-
+    available_vars("")
     allv <- available_vars()
     updateSelectInput(session, "sel_level1", choices=allv)
     updateSelectInput(session, "sel_level2", choices=setdiff(allv, input$sel_level1))
@@ -62,8 +61,6 @@ server <- function(session, input, output) {
     updateSelectInput(session, "sel_color",  choices=setdiff(allv, c(input$sel_level1, input$sel_level2, input$level3)))
     updateSelectInput(session, "sel_weight", choices=setdiff(allv, c(input$sel_level1, input$sel_level2, input$level3, input$sel_color)))
     updateSelectInput(session, "sel_codes",  choices=setdiff(allv, c(input$sel_level1, input$sel_level2, input$level3, input$sel_color, input$sel_weight)))
-
-
   })
 
   observe({
@@ -121,7 +118,7 @@ server <- function(session, input, output) {
     updateSelectInput(session, "sel_codes", choices=c("", available_vars()))
   })
 
-  output$curdatadf <- renderDataTable({
+  output$curdatadf <- DT::renderDataTable({
     DT::datatable(curdata(),
       options = list(lengthMenu = c(5, 30, 50), pageLength = 5, searching=FALSE))
   })
