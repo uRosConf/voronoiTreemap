@@ -1,5 +1,6 @@
 data(ExampleGDP, package="voronoiTreemap")
 data(canada, package="voronoiTreemap")
+canada <- canada[canada$h1=="Canada",]
 library(DT)
 
 
