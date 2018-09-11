@@ -4,7 +4,7 @@ ui <- navbarPage("Voronoi-Diagramm",
     shinyjs::useShinyjs(),
     sidebarPanel(
       fluidRow(
-        column(12, selectInput("selData", label="Select Dataframe", choices=available_datasets()))
+        column(12, selectInput("selData", label="Select Data", choices=available_datasets()))
       ),
       fluidRow(
         column(12, selectInput("sel_level1", label="Var containing total", choices=NULL))

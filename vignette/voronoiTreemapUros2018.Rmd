@@ -20,10 +20,10 @@ knitr::include_graphics("preisKalei.jpg")
 
 - [https://github.com/uros2018/voronoiTreemap](https://github.com/uros2018/voronoiTreemap)
 - important functions:
-   - *vt_input_from_df*  ... easy data input as a data frame
-   - *vt_export_json*    ... export to json
-   - *vt_d3*             ... create an htmlwidget
-   - *vt_app*            ... start a shiny to create a Voronoi treemap
+    - *vt_input_from_df*  ... easy data input as a data frame
+    - *vt_export_json*    ... export to json
+    - *vt_d3*             ... create an htmlwidget
+    - *vt_app*            ... start a shiny to create a Voronoi treemap
 ```{r, echo = TRUE}
 library(voronoiTreemap)
 data(ExampleGDP)
