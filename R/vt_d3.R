@@ -30,7 +30,8 @@
 #' #without label
 #' vt_d3(vt_export_json(canadaH), label=FALSE)
 #' #Example with coloring from scales package
-#' canada$color <- scales::seq_gradient_pal()(exp(canada$weight)/500)
+#' library(scales)
+#' canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
 #' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 #' vt_d3(vt_export_json(canadaH))
 #' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568

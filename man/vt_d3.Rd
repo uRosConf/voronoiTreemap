@@ -63,7 +63,8 @@ vt_d3(vt_export_json(canadaH))
 #without label
 vt_d3(vt_export_json(canadaH), label=FALSE)
 #Example with coloring from scales package
-canada$color <- scales::seq_gradient_pal()(exp(canada$weight)/500)
+library(scales)
+canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
 canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 vt_d3(vt_export_json(canadaH))
 }

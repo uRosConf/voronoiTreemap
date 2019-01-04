@@ -1,17 +1,22 @@
 Package: voronoiTreemap
 Type: Package
 Title: R package for voronoi treemaps with added interactivity by shiny
-Version: 0.1.3
-Date: 2018-09-11
+Version: 0.2.0
+Date: 2019-01-04
 Authors@R: c(
-  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut")),
-  person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut", "cre")),
+  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut","cre")),
+  person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut")),
   person("Malaver", "Vojvodic", email = "mmala027@uottawa.ca", role = c("aut")),
-  person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js library in htmlwidgets/lib, http://d3js.org"),
-  person("Franck", "Lebeau", role = c("aut", "cph"), comment = "d3-voronoi-treemap library, https://github.com/Kcnarf/d3-voronoi-treemap"))
+  person("Mike", "Bostock", role = c("cph"), comment = "d3.js library in htmlwidgets/lib, http://d3js.org"),
+  person("Franck", "Lebeau", role = c("cph"), comment = "d3-voronoi-treemap library, https://github.com/Kcnarf/d3-voronoi-treemap"))
 Description: This packages generates Voronoi-Treemaps as htmlwidgets usable for shiny.
 License: GPL-3
 Imports: data.tree,rlang,htmlwidgets,shiny,shinyjs,DT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    scales
+VignetteBuilder: knitr
