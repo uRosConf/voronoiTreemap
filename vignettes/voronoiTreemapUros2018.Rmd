@@ -2,7 +2,11 @@
 title: "voronoiTreemap (unconfUROS2018)"
 author: Manolo Malaver-Vojvodic (Statistics Canada), Bernhard Meindl (Statistics Austria),  Alexander Kowarik (Statistics Austria)
 date: "11 9 2018"
-output: slidy_presentation
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Your Vignette Title}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
