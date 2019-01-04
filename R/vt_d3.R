@@ -1,6 +1,6 @@
 #' Voronoi Treemap in an htmlwidget
 #'
-#' Function to generate an htmlwidget with an htmlwidget
+#' Function to generate an htmlwidget with a voronoi treemap
 #' @param data a correct json data object
 #' @param elementId optional a custom elementId to be returned
 #' @param width width of the widget

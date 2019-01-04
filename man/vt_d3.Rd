@@ -45,7 +45,7 @@ vt_d3(data, elementId = NULL, width = NULL, height = NULL,
 \item{size_circle}{thickness of the circle in css style, e.g. '2px'}
 }
 \description{
-Function to generate an htmlwidget with an htmlwidget
+Function to generate an htmlwidget with a voronoi treemap
 }
 \note{
 Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
