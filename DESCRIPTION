@@ -4,7 +4,7 @@ Title: Voronoi Treemaps with Added Interactivity by Shiny
 Version: 0.2.0
 Date: 2019-01-08
 Authors@R: c(
-  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut","cre")),
+  person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut","cre"), comment=c(ORCID="0000-0001-8598-4130")),
   person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut")),
   person("Malaver", "Vojvodic", email = "mmala027@uottawa.ca", role = c("aut")),
   person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js library, http://d3js.org"),
@@ -13,7 +13,6 @@ Description: The d3.js framework with the plugins d3-voronoi-map, d3-voronoi-tre
         are used to generate Voronoi treemaps in R and in a shiny application.
         The computation of the Voronoi treemaps are based on Nocaj and Brandes (2012)
         <doi:10.1111/j.1467-8659.2012.03078.x>.
-Maintainer: Alexander Kowarik <alexander.kowarik@statistik.gv.at>
 URL: https://github.com/uRosConf/voronoiTreemap
 License: GPL-3
 Imports: data.tree,rlang,htmlwidgets,shiny,shinyjs,DT

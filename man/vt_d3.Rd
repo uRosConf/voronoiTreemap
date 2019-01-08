@@ -50,7 +50,7 @@ Function to generate an htmlwidget with a voronoi treemap
 \note{
 The JavaScript library d3-voronoi treemap can be found here \url{https://github.com/Kcnarf/d3-voronoi-treemap}
   and the example is based on the
-  remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf \url{https://bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568}#'.
+  remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf \url{https://bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568}.
 }
 \examples{
 vt_d3(vt_export_json(vt_testdata()))
@@ -71,6 +71,6 @@ canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 vt_d3(vt_export_json(canadaH))
 }
 \references{
-Arlind Nocaj and Ulrik Brandes. (2012). Computing Voronoi Treemaps: Faster, Simpler, and Resolution‐independent.
-Computer Graphics Forum. Vol. 31. No. 3pt1. 855-864.
+Arlind Nocaj and Ulrik Brandes. (2012). Computing Voronoi Treempas: Faster, Simpler and Resolution-independent.
+Computer Graphics Forum. Vol.31. 855-864.
 }
