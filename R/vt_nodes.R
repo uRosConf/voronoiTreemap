@@ -54,7 +54,7 @@ vt_add_nodes <- function(node, refnode, node_names, colors=NULL, weights=NULL, c
   }
 
   col <- ww <- cc <- NULL
-  for (i in 1:length(node_names)) {
+  for (i in seq_along(node_names)) {
     lab <- node_names[i]
     if (!is.null(FindNode(cur_node, lab))) {
       cat("Node", lab, "already exists under", shQuote(refnode), "--> skipping\n")

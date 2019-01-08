@@ -12,7 +12,7 @@ vt_make_json <- function(node) {
     return(json)
   }
   json <- paste0(json,",",dQuote("children"),":[{")
-  for (i in 1:length(levs)) {
+  for (i in seq_along(levs)) {
     lev <- levs[i]
     if (i>1) {
       json <- paste0(json,"{")
