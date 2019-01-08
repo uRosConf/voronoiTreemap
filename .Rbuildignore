@@ -4,3 +4,6 @@ documentation
 .travis.yml
 .git
 .gitignore
+^README\.Rmd$
+^README-.*\.png$
+^README\.md$
