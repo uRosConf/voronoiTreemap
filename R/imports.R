@@ -5,4 +5,5 @@
 #' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget
 #' @import shiny
 #' @importFrom shinyjs html
+#' @importFrom DT datatable
 NULL

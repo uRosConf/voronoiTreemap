@@ -22,5 +22,6 @@ RoxygenNote: 6.1.1
 Suggests: 
     knitr,
     rmarkdown,
-    scales
+    scales,
+    testthat
 VignetteBuilder: knitr
