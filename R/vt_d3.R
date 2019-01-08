@@ -17,6 +17,12 @@
 #' @param size_border thickness of the borders in css style, e.g. '1px'
 #' @param size_border_hover thickness of the borders when hovering in css style, e.g. '3px'
 #' @param size_circle thickness of the circle in css style, e.g. '2px'
+#' @references 
+#' Arlind Nocaj and Ulrik Brandes. (2012). Computing Voronoi Treemaps: Faster, Simpler, and Resolution‐independent.
+#' Computer Graphics Forum. Vol. 31. No. 3pt1. 855-864.
+#' @note The JavaScript library d3-voronoi treemap can be found here \url{https://github.com/Kcnarf/d3-voronoi-treemap}
+#'   and the example is based on the
+#'   remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf \url{https://bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568}#'.
 #' @examples
 #' vt_d3(vt_export_json(vt_testdata()))
 #' data(ExampleGDP)
@@ -34,7 +40,6 @@
 #' canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
 #' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
 #' vt_d3(vt_export_json(canadaH))
-#' @note Remake of HowMuch.net's article 'The Global Economy by GDP' by _Kcnarf bl.ocks.org/Kcnarf/fa95aa7b076f537c00aed614c29bb568
 #' @export
 vt_d3 <- function(data, elementId = NULL,
                  width = NULL, height = NULL, seed = NULL,title = NULL,
