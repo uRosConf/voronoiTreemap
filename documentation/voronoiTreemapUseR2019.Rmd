@@ -1,0 +1,96 @@
+---
+title: voronoiTreemap (unconfUROS2018)
+author: 
+- Alexander Kowarik
+- Bernhard Meindl
+- Manolo Malaver-Vojvodic (Statistics Canada)
+institute: Qualitymanagement and Methods
+location: Toulouse
+date: 'July 2019'
+output: 
+  slideSTAT::slideSTAT:
+    language: en
+    dev: pdf
+    fig_crop: FALSE
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Idea
+ - Make it easy to create a plot like this:
+ 
+```{r, fig.width=400}
+knitr::include_graphics("preisKalei.jpg")
+```
+
+## R package
+
+- [https://github.com/uRosConf/voronoiTreemap](https://github.com/uRosConf/voronoiTreemap)
+- important functions:
+    - *vt_input_from_df*  ... easy data input as a data frame
+    - *vt_export_json*    ... export to json
+    - *vt_d3*             ... create an htmlwidget
+    - *vt_app*            ... start a shiny to create a Voronoi treemap
+```{r, echo = TRUE}
+library(voronoiTreemap)
+data(ExampleGDP)
+knitr::kable(head(ExampleGDP,3))
+```
+
+## Create a first graph
+
+```{r, echo = TRUE, fig.fullwidth=TRUE}
+gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP))
+vt_d3(gdp_json)
+```
+
+## There a couple of settings you can change I
+
+```{r, echo = TRUE, fig.fullwidth=TRUE}
+vt_d3(gdp_json,label = FALSE, color_border = "#000000",
+      size_border = "2px", legend = TRUE)
+```
+
+## There a couple of settings you can change II
+ - You can set a seed (in Javascript)!
+```{r, echo = TRUE}
+vt_d3(gdp_json, legend = TRUE, legend_title = "Continents", seed = 1)
+```
+
+
+## A 2nd Example (Canadian Consumer Price Index) I
+ - Colors can be provided for each cell independently.
+```{r, echo = TRUE}
+data(canada)
+canada <- canada[canada$h1=="Canada",]
+canada$codes <- canada$h3
+canadaH <- vt_export_json(vt_input_from_df(canada,scaleToPerc = FALSE))
+vt_d3(canadaH, label=FALSE,width = 400,height = 400)
+```
+
+## A 2nd Example (Canadian Consumer Price Index) II
+ - Colors could be computed according to a numeric variable, e.g. with the *scales* package.
+```{r, echo = TRUE}
+canada$color <- scales::seq_gradient_pal(low = "#999999",high = "#ffffff")(canada$weight/max(canada$weight))
+canadaH <- vt_export_json(vt_input_from_df(canada,scaleToPerc = FALSE))
+vt_d3(canadaH, label=FALSE,width = 400,height = 400, color_border = "#000000")
+```
+
+## Shiny App I
+
+```{r, out.width = "800px"}
+knitr::include_graphics("shiny1.jpg")
+```
+
+## Shiny App II
+```{r, out.width = "800px"}
+knitr::include_graphics("shiny2.jpg")
+```
+
+## Conclusion
+ - Package is 90% ready, hopefully available on CRAN soon.
+ - Great event!! Thanks to the organizers and attendees.
+ - [https://github.com/uros2018/voronoiTreemap](https://github.com/uros2018/voronoiTreemap)
