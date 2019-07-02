@@ -29,6 +29,7 @@ canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE,
 vt_d3(vt_export_json(canadaH))
 #without label
 vt_d3(vt_export_json(canadaH), label=FALSE)
+expect_true(TRUE)
 })
 
 Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = orig__R_CHECK_LENGTH_1_LOGIC2_)
