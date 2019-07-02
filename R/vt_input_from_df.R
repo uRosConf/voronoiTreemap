@@ -57,6 +57,13 @@ testdf <- function() {
 vt_input_from_df <- function(inp, scaleToPerc=FALSE, hierachyVar0 = NULL,
                              hierachyVar1, hierachyVar2,
                              colorVar, weightVar, labelVar = NULL) {
+  stopifnot(is_scalar_character(hierachyVar0)||is.null(hierachyVar0))
+  stopifnot(is_scalar_character(hierachyVar1))
+  stopifnot(is_scalar_character(hierachyVar2))
+  stopifnot(is_scalar_character(colorVar))
+  stopifnot(is_scalar_character(weightVar))
+  stopifnot(is_scalar_character(labelVar)||is.null(labelVar))
+  
   
   inp[[hierachyVar1]] <- as.character(inp[[hierachyVar1]])
   inp[[hierachyVar2]] <- as.character(inp[[hierachyVar2]])
