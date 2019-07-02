@@ -25,19 +25,25 @@
 #' @examples
 #' vt_d3(vt_export_json(vt_testdata()))
 #' data(ExampleGDP)
-#' gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP))
+#' gdp_json <- vt_export_json(vt_input_from_df(ExampleGDP, hierachyVar0 = "h1",
+#' hierachyVar1 = "h2", hierachyVar2 = "h3", colorVar = "color", weightVar="weight",
+#' labelVar = "codes"))
 #' vt_d3(gdp_json)
 #' data(canada)
 #' canada$codes <- canada$h3
 #' canada <- canada[canada$h1=="Canada",]
-#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE, hierachyVar0 = "h1",
+#'   hierachyVar1 = "h2", hierachyVar2 = "h3", colorVar = "color", labelVar = "codes",
+#'   weightVar = "weight")
 #' vt_d3(vt_export_json(canadaH))
 #' #without label
 #' vt_d3(vt_export_json(canadaH), label=FALSE)
 #' #Example with coloring from scales package
 #' library(scales)
 #' canada$color <- seq_gradient_pal()(exp(canada$weight)/500)
-#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE)
+#' canadaH <- vt_input_from_df(canada,scaleToPerc = FALSE, hierachyVar0 = "h1",
+#' hierachyVar1 = "h2", hierachyVar2 = "h3", colorVar = "color", labelVar = "codes",
+#'   weightVar = "weight")
 #' vt_d3(vt_export_json(canadaH))
 #' @export
 vt_d3 <- function(data, elementId = NULL,

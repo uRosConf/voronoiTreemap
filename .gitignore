@@ -27,3 +27,4 @@ vignettes/*.pdf
 rsconnect/
 .Rproj.user
 *.Rproj
+vignette

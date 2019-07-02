@@ -1,8 +1,7 @@
 Package: voronoiTreemap
 Type: Package
 Title: Voronoi Treemaps with Added Interactivity by Shiny
-Version: 0.2.0
-Date: 2019-01-08
+Version: 0.2.1
 Authors@R: c(
   person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("aut","cre"), comment=c(ORCID="0000-0001-8598-4130")),
   person("Bernhard", "Meindl", email = "bernhard.meindl@statistik.gv.at", role = c("aut")),

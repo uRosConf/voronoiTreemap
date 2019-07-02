@@ -4,12 +4,25 @@
 \alias{vt_input_from_df}
 \title{vt_input_from_df}
 \usage{
-vt_input_from_df(inp, scaleToPerc = FALSE)
+vt_input_from_df(inp, scaleToPerc = FALSE, hierachyVar0 = NULL,
+  hierachyVar1, hierachyVar2, colorVar, weightVar, labelVar = NULL)
 }
 \arguments{
 \item{inp}{a data.frame with specific format}
 
 \item{scaleToPerc}{(logical) scale to percent}
+
+\item{hierachyVar0}{(character) variable name of toplevel hierachy (will be replaced with "Total" if empty)}
+
+\item{hierachyVar1}{(character) variable name of first level}
+
+\item{hierachyVar2}{(character) variable name of second level}
+
+\item{colorVar}{(character) variable name of the color information}
+
+\item{weightVar}{(character) variable name of the weight information}
+
+\item{labelVar}{(character) variable name of (short) labels}
 }
 \value{
 a Node that can be written to json using \code{\link{vt_export_json}}
@@ -18,5 +31,15 @@ a Node that can be written to json using \code{\link{vt_export_json}}
 create a tree-structure from a data.frame
 }
 \examples{
-## non yet
+data(canada)
+canada <- canada[canada$h1=="Canada",]
+canada$codes <- canada$h3
+v1 <- vt_input_from_df(canada, hierachyVar0 = "h1", hierachyVar1 = "h2",
+  hierachyVar2 = "h3", colorVar = "color",weightVar = "weight",
+  labelVar = "codes")
+ colnames(canada) <- c("hier1","hier2","hier3","col","w","cod")
+v2 <- vt_input_from_df(canada, hierachyVar0 = "hier1", hierachyVar1 = "hier2",
+    hierachyVar2 = "hier3", colorVar = "col",weightVar = "w",
+    labelVar = "cod")
+    
 }
